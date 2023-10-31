@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 120px 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 60px;
+}
+
+.title {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.subtitle {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 8px;
+}
+.image {
+    width: 107px;
+    height: 102px;
+    object-fit: cover;
+}

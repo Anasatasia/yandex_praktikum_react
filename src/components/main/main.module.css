@@ -1,0 +1,10 @@
+.main {
+    max-width: 1400px;
+    margin-top: 7px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    column-gap: 40px;
+    justify-content: center;
+    align-items: start;
+}
