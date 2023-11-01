@@ -1,8 +1,13 @@
 import modalOverlayStyles from "./modal-overlay.module.css"
 import PropTypes from "prop-types";
-function ModalOverlay({children}) {
+function ModalOverlay({closeModal, children}) {
+    function closePopupOverlay(evt) {
+        if (evt.target === evt.currentTarget) {
+            closeModal();
+        }
+    }
     return(
-        <section className={modalOverlayStyles.overlay}>
+        <section className={modalOverlayStyles.overlay} onClick={closePopupOverlay}>
             {children}
         </section>
     )

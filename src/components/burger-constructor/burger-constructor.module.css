@@ -4,17 +4,26 @@
     gap: 40px;
     margin: 100px 16px 0;
     color: #F2F2F3;
+    overflow: hidden;
 }
 
-.positions::-webkit-scrollbar {
+.order__main {
+    max-height: 600px;
+    overflow-y:scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order__main::-webkit-scrollbar {
     width: 8px;
 }
 
-.positions::-webkit-scrollbar-track {
+.order__main::-webkit-scrollbar-track {
     background: #2f2f37;
 }
 
-.positions::-webkit-scrollbar-thumb {
+.order__main::-webkit-scrollbar-thumb {
     background: #8585ad;
 }
 
@@ -24,16 +33,14 @@
     gap: 32px;
     justify-items: right;
     align-items: center;
+    padding-right: 16px;
     justify-content: right;
 }
 
 .positions {
-    padding-right: 16px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: 600px;
-    overflow-y:scroll;
 }
 
 .price {

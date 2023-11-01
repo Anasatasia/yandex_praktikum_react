@@ -1,9 +1,9 @@
 import ingredientDetailsStyles from "./ingredient-details.module.css"
-import PropTypes from "prop-types";
+import {ingredientPropTypes} from "../../utils/type";
 function IngredientDetails({image, name, calories, carbohydrates, fat, proteins}) {
     return(
         <section className={ingredientDetailsStyles.details}>
-            <p style={{textAlign: "left", width: "100%"}} className="text text_type_main-large">Детали ингредиента</p>
+            <p className={"text text_type_main-large " + ingredientDetailsStyles.title}>Детали ингредиента</p>
             <img className={ingredientDetailsStyles.image} src={image} alt={name}/>
             <p className="text text_type_main-medium">{name}</p>
             <div className={ingredientDetailsStyles.descriptions}>
@@ -29,12 +29,12 @@ function IngredientDetails({image, name, calories, carbohydrates, fat, proteins}
 }
 
 IngredientDetails.propTypes = {
-    image: PropTypes.string,
-    name: PropTypes.string,
-    calories: PropTypes.number,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number
+    image: ingredientPropTypes.image,
+    name: ingredientPropTypes.name,
+    calories: ingredientPropTypes.calories,
+    proteins: ingredientPropTypes.proteins,
+    fat: ingredientPropTypes.fat,
+    carbohydrates: ingredientPropTypes.carbohydrates
 }
 
 export default IngredientDetails;

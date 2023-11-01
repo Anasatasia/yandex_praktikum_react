@@ -3,51 +3,9 @@ import burgerConstructorStyles from "./burger-constructor.module.css"
 import {useState} from "react";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
+import {selectedIngredients} from "../../utils/constants";
 
-const selectedIngredients = [
-    {
-       text: "Мини-салат Экзо-Плантаго",
-        price: 4400,
-        image: "https://code.s3.yandex.net/react/code/salad.png"
-    },
-    {
-        text: "Кристаллы марсианских альфа-сахаридов",
-        price: 762,
-        image: "https://code.s3.yandex.net/react/code/core.png"
-    },
-    {
-        text: "Говяжий метеорит (отбивная)",
-        price: 3000,
-        image: "https://code.s3.yandex.net/react/code/meat-04.png"
-    },
-    {
-        image: "https://code.s3.yandex.net/react/code/meat-03.png",
-        price: 988,
-        text: "Филе Люминесцентного тетраодонтимформа"
-    },
-    {
-        text: "Мини-салат Экзо-Плантаго",
-        price: 4400,
-        image: "https://code.s3.yandex.net/react/code/salad.png"
-    },
-    {
-        text: "Кристаллы марсианских альфа-сахаридов",
-        price: 762,
-        image: "https://code.s3.yandex.net/react/code/core.png"
-    },
-    {
-        text: "Говяжий метеорит (отбивная)",
-        price: 3000,
-        image: "https://code.s3.yandex.net/react/code/meat-04.png"
-    },
-    {
-        image: "https://code.s3.yandex.net/react/code/meat-03.png",
-        price: 988,
-        text: "Филе Люминесцентного тетраодонтимформа"
-    }
-]
-
-const FindSum = () => {
+const findSum = () => {
     let ans = 0;
     selectedIngredients.forEach((selectedIngredient) => {
         ans += selectedIngredient.price;
@@ -57,7 +15,7 @@ const FindSum = () => {
 function BurgerConstructor() {
     const [openedPopup, setOpenedPopup] = useState(false);
     return(
-        <section className={burgerConstructorStyles.order} style={{overflow: 'hidden'}}>
+        <section className={burgerConstructorStyles.order}>
             <div className={burgerConstructorStyles.positions}>
                 <div className={burgerConstructorStyles.position}>
                     <ConstructorElement
@@ -68,16 +26,18 @@ function BurgerConstructor() {
                         thumbnail="https://code.s3.yandex.net/react/code/bun-02-mobile.png"
                     />
                 </div>
-                {selectedIngredients.map((item, index) => (
-                    <div key={index} className={burgerConstructorStyles.position}>
-                        <DragIcon type={"primary"} />
-                        <ConstructorElement
-                            text={item.text}
-                            price={item.price}
-                            thumbnail={item.image}
-                        />
-                    </div>
-                ))}
+                <div className={burgerConstructorStyles.order__main}>
+                    {selectedIngredients.map((item, index) => (
+                        <div key={index} className={burgerConstructorStyles.position}>
+                            <DragIcon type={"primary"} />
+                            <ConstructorElement
+                                text={item.text}
+                                price={item.price}
+                                thumbnail={item.image}
+                            />
+                        </div>
+                    ))}
+                </div>
                 <div className={burgerConstructorStyles.position}>
                     <ConstructorElement
                         type="bottom"
@@ -90,12 +50,12 @@ function BurgerConstructor() {
             </div>
             <div className={burgerConstructorStyles.result}>
                 <div className={burgerConstructorStyles.price}>
-                    <p className="text text_type_main-medium">{FindSum()}</p>
+                    <p className="text text_type_main-medium">{findSum()}</p>
                     <CurrencyIcon type={"primary"} />
                 </div>
                 <Button htmlType="button" type="primary" size="large" onClick={() => setOpenedPopup(true)}>Оформить заказ</Button>
             </div>
-            {openedPopup && <Modal setOpenedPopup={setOpenedPopup} openedPopup={openedPopup}>
+            {openedPopup && <Modal closeModal={() => setOpenedPopup(false)} openedPopup={openedPopup}>
                 <OrderDetails />
             </Modal>}
         </section>

@@ -5,8 +5,8 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 function Main() {
     return (
         <main className={mainStyles.main}>
-            <BurgerIngredients></BurgerIngredients>
-            <BurgerConstructor></BurgerConstructor>
+            <BurgerIngredients />
+            <BurgerConstructor />
         </main>
         )
 }

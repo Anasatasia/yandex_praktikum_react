@@ -6,33 +6,29 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 const modalRoot = document.getElementById("react-modals");
 
-function Modal({setOpenedPopup, openedPopup, children}) {
-    function closePopupByEsc(evt) {
-        if (evt.key === "Escape") {
-            setOpenedPopup(false)
-        }
-    }
+function Modal({closeModal, children}) {
     useEffect(() => {
-        if (openedPopup) {
-            window.addEventListener("keydown", closePopupByEsc)
+        function closePopupByEsc(evt) {
+            if (evt.key === "Escape") {
+                closeModal();
+            }
         }
-        else {
-            window.removeEventListener("keydown", closePopupByEsc)
-        }
-    }, [openedPopup])
+        window.addEventListener("keydown", closePopupByEsc);
+        return () => {
+            window.removeEventListener("keydown", closePopupByEsc);
+        };
+    }, []);
     return ReactDOM.createPortal(
         (
             <>
-                {openedPopup &&
-                    <ModalOverlay>
-                        <section className={modalStyles.popup}>
-                            <div className={modalStyles.popup__button}>
-                                <CloseIcon type={"primary"} onClick={() => setOpenedPopup(false)}/>
-                            </div>
-                            {children}
-                        </section>
-                    </ModalOverlay>
-                }
+                <ModalOverlay closeModal={closeModal}>
+                    <section className={modalStyles.popup}>
+                        <div className={modalStyles.popup__button}>
+                            <CloseIcon type={"primary"} onClick={() => closeModal()}/>
+                        </div>
+                        {children}
+                    </section>
+                </ModalOverlay>
             </>
         ),
         modalRoot
@@ -41,11 +37,6 @@ function Modal({setOpenedPopup, openedPopup, children}) {
 
 Modal.propTypes = {
     setOpenedPopup: PropTypes.func,
-    openedPopup: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.object
-        ]
-    ),
     children: PropTypes.element
 
 }

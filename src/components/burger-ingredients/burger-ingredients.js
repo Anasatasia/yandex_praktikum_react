@@ -8,12 +8,12 @@ const URL = "https://norma.nomoreparties.space/api/ingredients ";
 
 function getIngredients() {
     return fetch(URL)
-        .then((data) => {
-            if (data.ok) {
-                return data.json()
+        .then(res => {
+            if (res.ok) {
+                return res.json();
             }
+            return Promise.reject(`Ошибка ${res.status}`);
         })
-        .catch(console.error)
 }
 
 
@@ -27,6 +27,7 @@ function BurgerIngredients() {
     useEffect(() => {
         getIngredients()
             .then((data) => setIngredients(data.data))
+            .catch(console.error)
     }, [])
 
     useEffect(() => {
@@ -77,7 +78,7 @@ function BurgerIngredients() {
                     </section>
                 </div>
             </section>
-            {currentBurger && <Modal openedPopup={currentBurger} setOpenedPopup={setCurrentBurger}>
+            {currentBurger && <Modal openedPopup={currentBurger} closeModal={() => {setCurrentBurger(false)}}>
                 <IngredientDetails  image={currentBurger.image} name={currentBurger.name} calories={currentBurger.calories} carbohydrates={currentBurger.carbohydrates}
                                     fat={currentBurger.fat} proteins={currentBurger.proteins}
                 />
