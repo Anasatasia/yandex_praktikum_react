@@ -1,0 +1,9 @@
+.position {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    justify-items: right;
+    align-items: center;
+    padding-right: 16px;
+    justify-content: right;
+}
