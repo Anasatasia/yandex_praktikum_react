@@ -1,6 +1,7 @@
 import {ORDER_NUMBER, RESET_ORDER} from "./index";
 
 import {URL} from "../../utils/constants"
+import {checkResponse} from "../../utils/utils";
 export function postOrder(ingredientsList, buns) {
     let ingredientsListId = [];
     ingredientsList.forEach((item) => {
@@ -15,12 +16,7 @@ export function postOrder(ingredientsList, buns) {
             },
             body: JSON.stringify({'ingredients': ingredientsListId})
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(res.status);
-            })
+            .then(checkResponse)
             .then(res => {
                 if (res.success) {
                     console.log(res);

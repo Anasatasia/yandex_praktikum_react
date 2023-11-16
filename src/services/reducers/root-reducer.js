@@ -54,7 +54,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 order_ingredients: {
                     ...state.order_ingredients,
-                    ingredients: [...state.order_ingredients.ingredients].filter(item => item.index_in_order !== action.index_in_order),
+                    ingredients: [...state.order_ingredients.ingredients].filter(item => item.uniqueId !== action.uniqueId),
                     sum: action.sum,
                     counts: {
                         ...state.order_ingredients.counts,

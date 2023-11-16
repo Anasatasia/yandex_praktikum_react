@@ -55,7 +55,7 @@ function BurgerConstructorItem({item, index, moveItem}) {
                 handleClose={() => {
                     dispatch({
                         type: DELETE_ITEM,
-                        index_in_order: item.index_in_order,
+                        uniqueId: item.uniqueId,
                         sum: order.sum - item.price,
                         item: item
                     })
@@ -67,7 +67,7 @@ function BurgerConstructorItem({item, index, moveItem}) {
     )
 }
 
-BurgerConstructorItem.prototype = {
+BurgerConstructorItem.propTypes = {
     item: ingredientPropTypes,
     index: PropTypes.number,
     moveItem: PropTypes.func

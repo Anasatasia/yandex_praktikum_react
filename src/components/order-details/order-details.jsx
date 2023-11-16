@@ -2,14 +2,14 @@ import orderDetailsStyles from "./order-details.module.css"
 import doneIcon from "./../../images/done.png"
 import {useSelector} from "react-redux";
 function OrderDetails() {
-    const order_number = useSelector(state => {
+    const orderNumber = useSelector(state => {
         return state.order_number;
     })
     return(
         <section className={orderDetailsStyles.container}>
             <div className={orderDetailsStyles.title}>
                 <p className="text text_type_digits-large">
-                    {order_number}
+                    {orderNumber}
                 </p>
                 <p className="text text_type_main-medium">
                     идентификатор заказа
