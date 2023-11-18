@@ -38,6 +38,7 @@
 }
 
 .positions {
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     gap: 10px;

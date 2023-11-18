@@ -20,16 +20,16 @@ function Modal({closeModal, children}) {
     }, []);
     return ReactDOM.createPortal(
         (
-            <>
-                <ModalOverlay closeModal={closeModal}>
-                    <section className={modalStyles.popup}>
-                        <div className={modalStyles.popup__button}>
-                            <CloseIcon type={"primary"} onClick={() => closeModal()}/>
-                        </div>
-                        {children}
-                    </section>
-                </ModalOverlay>
-            </>
+            <ModalOverlay closeModal={closeModal}>
+                <section className={modalStyles.popup}>
+                    <div className={modalStyles.popup__button}>
+                        <CloseIcon type={"primary"} onClick={() => {
+                            closeModal();
+                        }}/>
+                    </div>
+                    {children}
+                </section>
+            </ModalOverlay>
         ),
         modalRoot
     );

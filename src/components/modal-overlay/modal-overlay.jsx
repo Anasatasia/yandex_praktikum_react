@@ -13,8 +13,6 @@ function ModalOverlay({closeModal, children}) {
     )
 }
 ModalOverlay.propTypes = {
-
     children: PropTypes.element
-
 }
 export default ModalOverlay;
